@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trouvez la VAN</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+       
+    </style>
+</head>
+
+<body>
+    <div style="text-align: center;">
+        <a href="#" id="clickme">Commencer les calculs</a> <br>
+        <a href="index.html" style="padding: 10px; font-size: 16px;">Retour à l'accueil</a>
+    </div>
+    <div id="div1">
+        <h3 id="titre">Les résultats du calcul vont s'afficher ici</h3>
+    </div>
+    
+
+    <script type="text/javascript">
+        var el = document.getElementById ('clickme');
+            el.addEventListener('click', function() {
+
+                alert("Lisez attentivement avant de valider");
+                var n = prompt('Donnez la duree de l\'investissement (n) : ');
+                var n = parseInt(n);
+                var i = prompt('Donnez le taux de l\'investissement (i) en % : ');
+                var i = parseFloat(i);
+                var Inv = prompt('Donnez le montant du capital investi (I) : ');
+                var Inv = parseFloat(Inv);
+                var VR = prompt('Donnez la valeur residuel (VR) : ');
+                var VR = parseFloat(VR);
+                
+                denominateur = (1. + (i/100.));
+                var FNL = [];
+                alert("Vous allez maintenant entez les valeurs de FNL pour chaque anneée");
+                for (var i = 0; i < n; i++) {
+                    var inter = prompt('Entez le flux pour l\'annee n°' + parseInt(i+1));
+                    FNL[i] = parseFloat(inter);
+                }
+
+                var Temp = [];
+                for (var i = 0; i < n; i++) {
+                    if(i != n-1)
+                    {
+                        Temp[i] = FNL[i] / Math.pow(denominateur, i+1);
+                    }
+                    else
+                    {
+                        Temp[i] = (FNL[i] + VR) / Math.pow(denominateur, i+1);
+                    }
+                }
+                alert(denominateur + "");
+                var sommeTemp = 0;
+                for (var i = 0; i < n; i++) {
+                    sommeTemp += Temp[i];
+                }
+
+                var VAN = sommeTemp - Inv;
+                var IP = VAN / Inv;
+
+                var mondiv = document.getElementById('div1');
+                var montitre = document.getElementById('titre');                
+                
+                montitre.innerHTML = "Voici les résultats de calcul avec tous les détails :"
+
+                for (var i = 0; i < n; i++) {
+                    var newtitre = document.createElement('h4');
+                    newtitre.className = "classTitre";
+                    newtitre.innerHTML = FNL[i] + " / (" + denominateur + "^" + parseInt(i+1) + ") = " + Temp[i] + "";
+                    mondiv.appendChild(newtitre);
+                }
+                var textSommeTemp = document.createElement('h4');
+                textSommeTemp.innerHTML = "La somme intermédiaire est " + sommeTemp + "";
+                mondiv.appendChild(textSommeTemp);
+                var textVAN = document.createElement('h4');
+                textVAN.innerHTML = "Le résultat final, donc la VAN est " + VAN + "";
+                mondiv.appendChild(textVAN);
+                var textIP = document.createElement('h4');
+                textIP.innerHTML = "Nous pouvons en déduire l'IP qui est de " + IP + "";
+                mondiv.appendChild(textIP);
+                
+        }, false);
+        
+    </script>   
+</body>
+</html>

@@ -1,0 +1,47 @@
+body{
+    background-color: #796cf7;
+    font-size: 20px;
+    font-family: Geneva, Tahoma, sans-serif;
+}
+#div1{
+    margin: 0px auto;
+    padding: 20px;
+    width: 500px;
+    background-color: #9a92e9;
+    border: 5px solid #fff;
+}
+
+a{
+    text-decoration: none;
+    display: inline-block;
+    padding: 20px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    background-color: #220bf3;
+    border-radius: 10px;
+    color: #a39b23;
+}
+
+.classTitre{
+    font-weight: normal;
+}
+
+@media screen and (max-width: 590px){
+    #div1{
+        margin: 2px;
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 315px){
+    #div1{
+        margin: 0px;
+        width: 80%;
+        border-width: 2px;
+    }
+    a{
+        padding: 5px;
+    }
+}
